@@ -12,7 +12,7 @@ interface BreedsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDogBreed(dogBreedEntity: DogBreedEntity)
 
-    @Query("SELECT * FROM breeds_table ORDER BY breed DESC")
-    fun getDogBreeds(): LiveData<DogBreedEntity>
+    @Query("SELECT * FROM breeds_table ORDER BY breed ASC")
+    fun getDogBreeds(): LiveData<List<DogBreedEntity>>
 
 }

@@ -21,6 +21,11 @@ class BreedsAdapter: RecyclerView.Adapter<BreedsAdapter.BreedsViewHolder>() {
     }
 
     override fun getItemCount(): Int = breedsList.size
+    fun setData(breed: List<DogBreedEntity>) {
+        this.breedsList.clear()
+        this.breedsList.addAll(breed)
+        notifyDataSetChanged()
+    }
 
 
     inner class BreedsViewHolder(binding: BreedsItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {

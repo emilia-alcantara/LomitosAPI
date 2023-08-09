@@ -21,15 +21,17 @@ class ListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentListBinding.inflate(layoutInflater, container, false)
-      //  initRecycler()
         breedViewModel.getAllBreeds()
+        initRecycler()
         return binding.root
     }
 
     private fun initRecycler() {
         val breedsAdapter = BreedsAdapter()
         binding.recAllDogsList.adapter = breedsAdapter
-        //breedViewModel.
+        breedViewModel.breedsLiveData().observe(viewLifecycleOwner) {
+            breedsAdapter.setData(it)
+        }
     }
 
 

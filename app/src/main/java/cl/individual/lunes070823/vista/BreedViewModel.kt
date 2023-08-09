@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 
 class BreedViewModel (app:Application) : AndroidViewModel(app) {
     val repo : Repositorio
+    fun breedsLiveData() = repo.getBreedsFromLocal()
 
     init {
         val api = BreedsRetrofit.getRetrofitDogBreed()
