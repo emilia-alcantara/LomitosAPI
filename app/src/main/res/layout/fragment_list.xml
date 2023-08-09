@@ -11,6 +11,7 @@
         android:id="@+id/listFragToolbar"
         style="@style/my_toolbar_style"
         android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,6 +23,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recAllDogsList"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
