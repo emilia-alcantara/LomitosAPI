@@ -11,6 +11,8 @@ class Repositorio (private val breedsAPI: BreedsAPI, private val breedsDao: Bree
 
     fun getBreedsFromLocal(): LiveData<List<DogBreedEntity>> = breedsDao.getDogBreeds()
 
+    fun getDogBreedDetails(id: String):LiveData<List<DogBreedDetailEntity>> = breedsDao.getDogBreedDetails(id)
+
     suspend fun loadBreedsToDatabase(){
         val response = breedsAPI.getData()
 

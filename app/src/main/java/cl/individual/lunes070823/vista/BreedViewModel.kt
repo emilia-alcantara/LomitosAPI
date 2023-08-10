@@ -12,6 +12,8 @@ class BreedViewModel (app:Application) : AndroidViewModel(app) {
     val repo : Repositorio
     fun breedsLiveData() = repo.getBreedsFromLocal()
 
+    fun breedDetailsLiveData(id: String) = repo.getDogBreedDetails(id)
+
     init {
         val api = BreedsRetrofit.getRetrofitDogBreed()
         val dao = BreedsDatabase.getDatabase(app).getBreedsDao()
