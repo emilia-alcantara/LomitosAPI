@@ -15,4 +15,7 @@ interface BreedsDao {
     @Query("SELECT * FROM breeds_table ORDER BY breed ASC")
     fun getDogBreeds(): LiveData<List<DogBreedEntity>>
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertDogBreedDetails(dogBreedDetail:DogBreedDetailEntity)
+
 }

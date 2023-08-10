@@ -20,7 +20,11 @@ class BreedViewModel (app:Application) : AndroidViewModel(app) {
     }
 
     fun getAllBreeds() = viewModelScope.launch {
-        repo.loadBreedsToDatabase() // tengo duda de esta funcion (? por el nombre que le puse vs lo que hace aquí
+        repo.loadBreedsToDatabase()
+    }
+
+    fun getBreedDetails(id:String) = viewModelScope.launch {
+        repo.loadBreedDetailsToDatabase(id)
     }
 
 }
