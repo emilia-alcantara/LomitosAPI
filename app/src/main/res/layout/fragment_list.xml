@@ -8,7 +8,7 @@
     tools:context=".vista.ListFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/listFragToolbar"
+        android:id="@+id/detailsFragToolbar"
         style="@style/my_toolbar_style"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -29,5 +29,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listFragToolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsFragToolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

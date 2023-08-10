@@ -37,8 +37,17 @@ class DetailFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentDetailBinding.inflate(inflater, container, false)
         viewModelDetail.getBreedDetails(param1.toString())
+        initRecycler()
 
         return binding.root
+    }
+
+    private fun initRecycler() {
+        val detailsAdapter = DetailsAdapter()
+        binding.recDetails.adapter = detailsAdapter
+        viewModelDetail.breedDetailsLiveData(param1.toString()).observe(viewLifecycleOwner) {
+            detailsAdapter.setData(it)
+        }
     }
 
     companion object {
