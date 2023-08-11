@@ -16,8 +16,8 @@ class Repositorio(private val breedsAPI: BreedsAPI, private val breedsDao: Breed
         if (response.isSuccessful) {
             val message = response.body()!!.message
             val keys = message.keys
-            keys.forEach {
-                val dogBreedEntity = DogBreedEntity(it)
+            keys.forEach { breed ->
+                val dogBreedEntity = breed.toBreedEntity()
                 breedsDao.insertDogBreed(dogBreedEntity)
             }
         }
@@ -26,7 +26,7 @@ class Repositorio(private val breedsAPI: BreedsAPI, private val breedsDao: Breed
         val response = breedsAPI.getBreedDetails(id)
         if (response.isSuccessful) {
             response.body()!!.message.forEach { imgUrl ->
-                val breedDetail = imgUrl.toEntity(id)
+                val breedDetail = imgUrl.toDetailEntity(id)
                 breedsDao.insertDogBreedDetails(breedDetail)
             }
         } else {

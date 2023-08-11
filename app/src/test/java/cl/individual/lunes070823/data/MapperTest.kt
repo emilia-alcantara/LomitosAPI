@@ -13,10 +13,25 @@ class MapperTest {
         val id = "id"
 
         // when
-        val result = imgUrl.toEntity(id)
+        val result = imgUrl.toDetailEntity(id)
 
         // then
         assertEquals(id, result.breedDetail)
         assertEquals(imgUrl, result.imgUrl)
+    }
+
+    @Test
+    fun toBreedEntity() {
+        // given
+        val breed = "example breed"
+
+        // when
+        val result = breed.toBreedEntity()
+
+        // then
+        assertEquals(breed, result.breed)
+
+
+
     }
 }
