@@ -7,31 +7,26 @@ import cl.individual.lunes070823.data.local.DogBreedDetailEntity
 import cl.individual.lunes070823.data.local.DogBreedEntity
 import cl.individual.lunes070823.data.remote.BreedsAPI
 
-class Repositorio (private val breedsAPI: BreedsAPI, private val breedsDao: BreedsDao) {
-
+class Repositorio(private val breedsAPI: BreedsAPI, private val breedsDao: BreedsDao) {
     fun getBreedsFromLocal(): LiveData<List<DogBreedEntity>> = breedsDao.getDogBreeds()
-
-    fun getDogBreedDetails(id: String):LiveData<List<DogBreedDetailEntity>> = breedsDao.getDogBreedDetails(id)
-
-    suspend fun loadBreedsToDatabase(){
+    fun getDogBreedDetails(id: String): LiveData<List<DogBreedDetailEntity>> =
+        breedsDao.getDogBreedDetails(id)
+    suspend fun loadBreedsToDatabase() {
         val response = breedsAPI.getData()
-
-        if(response.isSuccessful) {
+        if (response.isSuccessful) {
             val message = response.body()!!.message
             val keys = message.keys
-
-            keys.forEach{
+            keys.forEach {
                 val dogBreedEntity = DogBreedEntity(it)
                 breedsDao.insertDogBreed(dogBreedEntity)
             }
         }
     }
-
-    suspend fun loadBreedDetailsToDatabase(id:String) {
+    suspend fun loadBreedDetailsToDatabase(id: String) {
         val response = breedsAPI.getBreedDetails(id)
         if (response.isSuccessful) {
-            response.body()!!.message.forEach {
-                val breedDetail = DogBreedDetailEntity(id,it)
+            response.body()!!.message.forEach { imgUrl ->
+                val breedDetail = imgUrl.toEntity(id)
                 breedsDao.insertDogBreedDetails(breedDetail)
             }
         } else {
@@ -39,3 +34,4 @@ class Repositorio (private val breedsAPI: BreedsAPI, private val breedsDao: Bree
         }
     }
 }
+
