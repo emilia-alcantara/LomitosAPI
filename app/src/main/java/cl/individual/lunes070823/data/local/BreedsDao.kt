@@ -5,12 +5,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-
 @Dao
 interface BreedsDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertDogBreedList(dogBreedEntity: DogBreedEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertDogBreed(dogBreedEntity: DogBreedEntity)
+    suspend fun insertDogBreedList(breedList: List<DogBreedEntity>)
 
     @Query("SELECT * FROM breeds_table ORDER BY breed ASC")
     fun getDogBreeds(): LiveData<List<DogBreedEntity>>
@@ -20,5 +21,5 @@ interface BreedsDao {
 
     @Query("SELECT * FROM table_detail WHERE breed_detail LIKE :id")
     fun getDogBreedDetails(id:String): LiveData<List<DogBreedDetailEntity>>
-
 }
+
